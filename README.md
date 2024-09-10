@@ -1,5 +1,10 @@
 # race-scheduler
 
+<mark>REMEMBER to create an environment variable to hold the password to Azure PostgreSQL database.</mark>
+```
+export AZUREPOSTGRESPASS=<PostgreSQL password>
+```
+
 Refering to docs at ...
 
 - https://medium.com/@theflyboy/building-a-simple-crud-application-with-django-ninja-from-scratch-37d7085453cf
