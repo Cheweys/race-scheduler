@@ -1,11 +1,11 @@
-INSERT INTO race_schedule.rider (rider_name)
+INSERT INTO race_schedule_rider (rider_name)
     VALUES ('Morgan Chaffin');
 
-INSERT INTO race_schedule.rider (rider_name)
+INSERT INTO race_schedule_rider (rider_name)
     VALUES ('Patrick Schoening');
 
 INSERT INTO 
-    race_schedule.bike
+    race_schedule_bike
     (
         rider_id, make, model
     )
@@ -14,12 +14,12 @@ SELECT
    'Alchemy',
    'Lycos'
 FROM
-    race_schedule.rider r
+    race_schedule_rider r
 WHERE
     r.rider_name = 'Morgan Chaffin';
 
 INSERT INTO 
-    race_schedule.bike
+    race_schedule_bike
     (
         rider_id, make, model
     )
@@ -28,12 +28,12 @@ SELECT
    'Specialized',
    'Tarmac SL7'
 FROM
-    race_schedule.rider r
+    race_schedule_rider r
 WHERE
     r.rider_name = 'Morgan Chaffin';
 
 INSERT INTO 
-    race_schedule.bike
+    race_schedule_bike
     (
         rider_id, make, model
     )
@@ -42,55 +42,83 @@ SELECT
    'Bearclaw',
    'Towmac'
 FROM
-    race_schedule.rider r
+    race_schedule_rider r
 WHERE
     r.rider_name = 'Patrick Schoening';
 
 INSERT INTO
-    race_schedule.wheelset ( rider_id, model )
+    race_schedule_wheelset ( rider_id, model )
 SELECT
     r.rider_id,
     'ZIPP'
 FROM
-    race_schedule.rider r
+    race_schedule_rider r
 WHERE
     r.rider_name = 'Morgan Chaffin';
 
 INSERT INTO
-    race_schedule.wheelset ( rider_id, model )
+    race_schedule_wheelset ( rider_id, model )
 SELECT
     r.rider_id,
     '27.5 HED Half BFD'
 FROM
-    race_schedule.rider r
+    race_schedule_rider r
 WHERE
     r.rider_name = 'Patrick Schoening';
 
-INSERT INTO race_schedule.cycling_event (year, event_name, city, state, start_date, end_date, event_url, registration_url)
+INSERT INTO race_schedule_cycling_event (year, event_name, city, state, start_date, end_date, event_url, registration_url)
     VALUES (2024, 'Oklahoma Gravel Growler', 'Tecumseh', 'OK', '2024-02-03', '2024-02-03',
     'https://www.facebook.com/OKGravelGrowler/', 'https://www.bikesignup.com/Race/OK/Shawnee/OklahomaGravelGrowler');
 
-# TODO ...
-
-INSERT INTO registration (
-    event_id,
+INSERT INTO race_schedule_race (
+    cycling_event_id,
 	rider_id,
+    race_date,
+    race_start_time,
 	distance,
 	distance_units,
-    result_category,
-    result_position
+    terrain_type,
+	cost,
+	is_elite,
+	bike_id,
+	wheelset_id,
+    results_url,
+    total_time,
+	overall_female_male_position,
+	overall_result_position,
+	notes
 )
-SELECT e.event_id, r.rider_id, 85, 'mi', 'Overall Women', 2 FROM rider r 
-JOIN event e ON event_name = 'Oklahoma Gravel Growler'
+SELECT
+    e.cycling_event_id,
+    r.rider_id,
+    '2024-02-03',
+    '09:00:00',
+    85,
+    'mi',
+    'gravel',
+    60.00,
+    'Y',
+    b.bike_id,
+    w.wheelset_id,
+    'https://www.bikesignup.com/Race/Results/82295#resultSetId-437789;perpage:100',
+    '5:49:14.87',
+    2,
+    4,
+    'Rainy, muddy day. Second to Emily Newsome (pro). Alison Tetrick (pro) was third.'
+FROM race_schedule_rider r 
+JOIN race_schedule_cycling_event e ON event_name = 'Oklahoma Gravel Growler'
+JOIN race_schedule_bike b ON make = 'Alchemy' and model = 'Lycos'
+JOIN race_schedule_wheelset w ON w.model = 'ZIPP'
 WHERE r.rider_name = 'Morgan Chaffin';
 
+/*
 INSERT INTO event (year, event_name, city, state, start_date, race_start_time, event_url, registration_url, results_url)
     VALUES (2024, 'Dirty South Roubaix', 'Alto Pass', 'IL', '2024-03-02', '09:00:00',
     'https://www.bikesignup.com/Race/IL/AltoPass/TheDirtySouthRoubaix100k',
     'https://www.bikesignup.com/Race/IL/AltoPass/TheDirtySouthRoubaix100k',
     'https://www.bikesignup.com/Race/Results/41183');
 
-INSERT INTO race_schedule.cycling_event (
+INSERT INTO race_schedule_cycling_event (
     event_id,
 	rider_id,
 	distance,
@@ -132,3 +160,4 @@ INSERT INTO registration (
 SELECT e.event_id, r.rider_id, 64, 'mi' FROM rider r 
 JOIN event e ON event_name = 'Hazel Valley Rally'
 WHERE r.rider_name = 'Patrick Schoening';
+*/

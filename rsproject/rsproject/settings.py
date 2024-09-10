@@ -83,7 +83,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'OPTIONS': {
-            'options': '-c search_path=race_scheudule, public'
+            'options': '-c search_path=race_scheudule,public'
         },
         'NAME': 'postgres',
         'USER': 'ptschoen',

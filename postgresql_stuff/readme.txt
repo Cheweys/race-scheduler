@@ -1,3 +1,7 @@
+## Docker and PostgreSql
+
+*I didn't use this for the last deployment. Refer to the above Azure for PostgreSql notes in the `..README.md` file.*
+
 docker cheatsheet
   https://zhubicen.github.io/posts/docker-cheet-sheet/
 
@@ -34,5 +38,5 @@ pyspark shell
 This all doesn't seem to work ...
   Create docker container from image spark:python3 (Not sure about this) ...
     > docker run --name spark1 -d spark:python3 /opt/spark/bin/pyspark
-   pyspark(if container is already running, though not sure hwo to keep it running IDK) ...
+   pyspark(if container is already running, though not sure how to keep it running IDK) ...
     > docker exec -it spark /opt/spark/bin/pyspark
