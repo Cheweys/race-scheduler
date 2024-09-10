@@ -1,7 +1,7 @@
 from typing import List, Optional
 from ninja import NinjaAPI
-from racesched.models import RaceScheduleRace
-from racesched.schema import RaceSchemaFullOut, NotFoundSchema
+from .models import RaceScheduleRace
+from .schema import RaceSchemaFullOut, NotFoundSchema
 
 api = NinjaAPI()
 

@@ -1,5 +1,8 @@
-from racesched.models import RaceScheduleCyclingEvent, RaceScheduleRider, RaceScheduleBike, RaceScheduleWheelset, RaceScheduleRace
-from ninja import ModelSchema
+from .models import RaceScheduleCyclingEvent, RaceScheduleRider, RaceScheduleBike, RaceScheduleWheelset, RaceScheduleRace
+from ninja import Schema, ModelSchema
+
+class NotFoundSchema(Schema):
+    message: str
 
 class CyclingEventSchemaIn(ModelSchema):
     class Meta:
