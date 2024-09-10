@@ -115,56 +115,111 @@ SELECT
 FROM race_schedule_rider r 
 JOIN race_schedule_cycling_event e ON event_name = 'Oklahoma Gravel Growler'
 JOIN race_schedule_bike b ON make = 'Alchemy' and model = 'Lycos'
-JOIN race_schedule_wheelset w ON w.model = 'ZIPP'
+JOIN race_schedule_wheelset w ON w.make = 'ZIPP' and w.model = 'Firecrest 303'
 WHERE r.rider_name = 'Morgan Chaffin';
 
-/*
-INSERT INTO event (year, event_name, city, state, start_date, race_start_time, event_url, registration_url, results_url)
-    VALUES (2024, 'Dirty South Roubaix', 'Alto Pass', 'IL', '2024-03-02', '09:00:00',
-    'https://www.bikesignup.com/Race/IL/AltoPass/TheDirtySouthRoubaix100k',
-    'https://www.bikesignup.com/Race/IL/AltoPass/TheDirtySouthRoubaix100k',
-    'https://www.bikesignup.com/Race/Results/41183');
+INSERT INTO race_schedule_cycling_event (year, event_name, city, state, start_date, end_date, event_url, registration_url)
+    VALUES (2024, 'Dirty South Roubaix', 'Alto Pass', 'IL', '2024-03-02', '2024-03-02',
+    'https://www.facebook.com/dirtysouthgravel',
+    'https://www.bikesignup.com/Race/IL/AltoPass/TheDirtySouthRoubaix100k');
 
-INSERT INTO race_schedule_cycling_event (
-    event_id,
+INSERT INTO race_schedule_race (
+    cycling_event_id,
 	rider_id,
+    race_date,
 	distance,
 	distance_units,
-    result_category,
-    result_position
+    terrain_type,
+	is_elite,
+	bike_id,
+	wheelset_id,
+    results_url,
+    total_time,
+	overall_female_male_position,
+	overall_result_position
 )
-SELECT e.event_id, r.rider_id, 100, 'km', 'Overall Women', 1 FROM rider r 
-JOIN event e ON event_name = 'Dirty South Roubaix'
+SELECT
+    e.cycling_event_id,
+    r.rider_id,
+    '2024-03-02',
+    100,
+    'km',
+    'gravel',
+    'N',
+    b.bike_id,
+    w.wheelset_id,
+    'https://www.bikesignup.com/Race/Results/41183#resultSetId-440291;perpage:250',
+    '3:18:35.44',
+    1,
+    22
+FROM race_schedule_rider r 
+JOIN race_schedule_cycling_event e ON event_name = 'Dirty South Roubaix'
+JOIN race_schedule_bike b ON make = 'Alchemy' and model = 'Lycos'
+JOIN race_schedule_wheelset w ON w.make = 'ZIPP' and w.model = 'Firecrest 303'
 WHERE r.rider_name = 'Morgan Chaffin';
 
-INSERT INTO event (year, event_name, city, state, start_date, race_start_time, event_url, registration_url)
-    VALUES (2024, 'Louisville Classic Gravel Grinder', 'Louisville', 'NE', '2024-04-06', '09:00:00',
+INSERT INTO race_schedule_cycling_event (year, event_name, city, state, start_date, end_date, event_url, registration_url)
+    VALUES (2024, 'Louisville Classic Gravel Grinder', 'Louisville', 'NE', '2024-04-06', '2024-04-06',
     'https://www.facebook.com/profile.php?id=61553912115482&mibextid=LQQJ4d',
     'https://www.bikereg.com/63540');
 
-INSERT INTO registration (
-    event_id,
+INSERT INTO race_schedule_race (
+    cycling_event_id,
 	rider_id,
+    race_date,
 	distance,
-	distance_units
+	distance_units,
+    terrain_type,
+	is_elite,
+	bike_id,
+	wheelset_id,
+	overall_female_male_position
 )
-SELECT e.event_id, r.rider_id, 100, 'km' FROM rider r 
-JOIN event e ON event_name = 'Louisville Classic Gravel Grinder'
+SELECT
+    e.cycling_event_id,
+    r.rider_id,
+    '2024-04-06',
+    100,
+    'km',
+    'gravel',
+    'N',
+    b.bike_id,
+    w.wheelset_id,
+    1
+FROM race_schedule_rider r 
+JOIN race_schedule_cycling_event e ON event_name = 'Louisville Classic Gravel Grinder'
+JOIN race_schedule_bike b ON make = 'Alchemy' and model = 'Lycos'
+JOIN race_schedule_wheelset w ON w.make = 'ZIPP' and w.model = 'Firecrest 303'
 WHERE r.rider_name = 'Morgan Chaffin';
 
-
-INSERT INTO event (year, event_name, city, state, start_date, event_url, registration_url)
-    VALUES (2024, 'Hazel Valley Rally', 'Fayetteville', 'AR', '2024-04-13',
-    'https://www.ruleofthree.bike/',
+INSERT INTO race_schedule_cycling_event (year, event_name, city, state, start_date, end_date, event_url, registration_url)
+    VALUES (2024, 'Hazel Valley Rally', 'Fayetteville', 'AR', '2024-04-13', '2024-04-13',
+    'https://www.ruleofthree.bike/hazelvalleyrally',
     'https://www.bikereg.com/62840');
 
-INSERT INTO registration (
-    event_id,
+INSERT INTO race_schedule_race (
+    cycling_event_id,
 	rider_id,
+    race_date,
 	distance,
-	distance_units
+	distance_units,
+    terrain_type,
+	is_elite,
+	bike_id,
+	wheelset_id
 )
-SELECT e.event_id, r.rider_id, 64, 'mi' FROM rider r 
-JOIN event e ON event_name = 'Hazel Valley Rally'
+SELECT
+    e.cycling_event_id,
+    r.rider_id,
+    '2024-04-13',
+    62.5,
+    'mi',
+    'gravel',
+    'N',
+    b.bike_id,
+    w.wheelset_id
+FROM race_schedule_rider r 
+JOIN race_schedule_cycling_event e ON event_name = 'Hazel Valley Rally'
+JOIN race_schedule_bike b ON make = 'Bearclaw' and model = 'Towmac'
+JOIN race_schedule_wheelset w ON w.make = 'HED' and w.model = 'Half BFD'
 WHERE r.rider_name = 'Patrick Schoening';
-*/
