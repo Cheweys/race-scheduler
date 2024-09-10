@@ -1,18 +1,19 @@
-INSERT INTO race_schedule_rider (rider_name)
-    VALUES ('Morgan Chaffin');
+INSERT INTO race_schedule_rider ( rider_name, notes )
+    VALUES ('Morgan Chaffin', 'badass');
 
-INSERT INTO race_schedule_rider (rider_name)
-    VALUES ('Patrick Schoening');
+INSERT INTO race_schedule_rider ( rider_name, notes )
+    VALUES ('Patrick Schoening', 'not an athlete lol');
 
 INSERT INTO 
     race_schedule_bike
     (
-        rider_id, make, model
+        rider_id, make, model, notes
     )
 SELECT 
    r.rider_id,
    'Alchemy',
-   'Lycos'
+   'Lycos',
+   'Name is Aurora. Black gravel bike.'
 FROM
     race_schedule_rider r
 WHERE
@@ -21,12 +22,13 @@ WHERE
 INSERT INTO 
     race_schedule_bike
     (
-        rider_id, make, model
+        rider_id, make, model, notes
     )
 SELECT 
    r.rider_id,
    'Specialized',
-   'Tarmac SL7'
+   'Tarmac SL7',
+   'White road bike.'
 FROM
     race_schedule_rider r
 WHERE
@@ -35,32 +37,37 @@ WHERE
 INSERT INTO 
     race_schedule_bike
     (
-        rider_id, make, model
+        rider_id, make, model, notes
     )
 SELECT 
    r.rider_id,
    'Bearclaw',
-   'Towmac'
+   'Towmac',
+   'Ti drop bar fat bike.'
 FROM
     race_schedule_rider r
 WHERE
     r.rider_name = 'Patrick Schoening';
 
 INSERT INTO
-    race_schedule_wheelset ( rider_id, model )
+    race_schedule_wheelset ( rider_id, make, model, size )
 SELECT
     r.rider_id,
-    'ZIPP'
+    'ZIPP',
+    'Firecrest 303',
+    '700c'
 FROM
     race_schedule_rider r
 WHERE
     r.rider_name = 'Morgan Chaffin';
 
 INSERT INTO
-    race_schedule_wheelset ( rider_id, model )
+    race_schedule_wheelset ( rider_id, make, model, size )
 SELECT
     r.rider_id,
-    '27.5 HED Half BFD'
+    'HED',
+    'Half BFD',
+    '27.5 x fat'
 FROM
     race_schedule_rider r
 WHERE

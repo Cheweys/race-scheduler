@@ -8,36 +8,43 @@ DROP TABLE IF EXISTS race_schedule_rider;
 CREATE TABLE race_schedule_cycling_event (
 	cycling_event_id serial PRIMARY KEY,
 	year integer NOT NULL,
-	event_name TEXT NOT NULL,
-	address TEXT,
-	city TEXT NOT NULL,
-	state TEXT NOT NULL,
+	event_name VARCHAR(200) NOT NULL,
+	address VARCHAR(100),
+	city VARCHAR(100) NOT NULL,
+	state VARCHAR(2) NOT NULL,
 	start_date date NOT NULL,
 	end_date date,
-	event_url text,
-	registration_url text,
+	event_url VARCHAR(250),
+	registration_url VARCHAR(250),
 	notes text,
 	UNIQUE (year, event_name)
 );
 
 CREATE TABLE race_schedule_rider (
 	rider_id serial PRIMARY KEY,
-	rider_name text UNIQUE NOT NULL
+	rider_name VARCHAR(250) UNIQUE NOT NULL,
+	notes text
 );
 
 CREATE TABLE race_schedule_bike (
 	bike_id serial PRIMARY KEY,
 	rider_id integer REFERENCES race_schedule_rider NOT NULL,
-	make text UNIQUE NOT NULL,
-	model text UNIQUE NOT NULL,
-	retired text NOT NULL DEFAULT 'N' check (retired in ('Y', 'N'))
+	make VARCHAR(250) NOT NULL,
+	model VARCHAR(250) NOT NULL,
+	retired VARCHAR(1) NOT NULL DEFAULT 'N' check (retired in ('Y', 'N')),
+	notes text,
+	UNIQUE (rider_id, make, model)
 );
 
 CREATE TABLE race_schedule_wheelset (
 	wheelset_id serial PRIMARY KEY,
 	rider_id integer REFERENCES race_schedule_rider NOT NULL,
-	model text UNIQUE NOT NULL,
-	retired text NOT NULL DEFAULT 'N' check (retired in ('Y', 'N'))
+	make VARCHAR(250) NOT NULL,
+	model VARCHAR(250) NOT NULL,
+	size  VARCHAR(100),
+	retired VARCHAR(1) NOT NULL DEFAULT 'N' check (retired in ('Y', 'N')),
+	notes text,
+	UNIQUE (rider_id, make, model)
 );
 
 CREATE TABLE race_schedule_race (
@@ -47,20 +54,20 @@ CREATE TABLE race_schedule_race (
 	race_date date,
 	race_start_time time,
 	distance integer NOT NULL,
-	distance_units text NOT NULL check (distance_units in ('mi', 'km')),
-	terrain_type text check (terrain_type in ('gravel', 'road', 'mountain', 'criterium', 'other')),
-	route_url text,
+	distance_units VARCHAR(2) NOT NULL check (distance_units in ('mi', 'km')),
+	terrain_type VARCHAR(20) check (terrain_type in ('gravel', 'road', 'mountain', 'criterium', 'other')),
+	route_url VARCHAR(250),
 	cost float(2),
-	is_elite text NOT NULL DEFAULT 'N' check (is_elite in ('Y', 'N')),
+	is_elite VARCHAR(1) NOT NULL DEFAULT 'N' check (is_elite in ('Y', 'N')),
 	bike_id integer REFERENCES race_schedule_bike,
 	wheelset_id integer REFERENCES race_schedule_wheelset,
-	results_url text,
+	results_url VARCHAR(250),
 	total_time time,
 	total_elevation_gain_feet int,
 	average_speed float(1),
 	average_power int,
 	normalized_power int,
-	category_desc text,
+	category_desc VARCHAR(250),
 	category_result_position integer,
 	age_group_position integer,
 	overall_female_male_position integer,
