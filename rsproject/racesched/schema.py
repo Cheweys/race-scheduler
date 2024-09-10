@@ -1,4 +1,4 @@
-from models import RaceScheduleCyclingEvent, RaceScheduleRider, RaceScheduleBike, RaceScheduleWheelset, RaceScheduleRace
+from racesched.models import RaceScheduleCyclingEvent, RaceScheduleRider, RaceScheduleBike, RaceScheduleWheelset, RaceScheduleRace
 from ninja import ModelSchema
 
 class CyclingEventSchemaIn(ModelSchema):
