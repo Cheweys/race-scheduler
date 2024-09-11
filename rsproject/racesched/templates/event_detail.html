@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ event.name }}
+{{ event.start_date }}
+{{ event.city }}, {{ event.state }}
+{% endblock %}
+
+{% block content %}
+{% if event.race_set.all %}
+    {% for race in event.race_set.all %}
+    <div class="container">{{race.distance}} {{race.distance_units}} on {{race.race_date}}</div>
+        <ul class="list-group">
+            <li class="list-group-item">
+                Rider: {{race.rider.rider_name}}
+            </li>
+        </ul>
+    </div>
+    {% endfor %}
+{% else %}
+    <div>This event has not been registered for.</div>
+{% endif %}
+{% endblock %}

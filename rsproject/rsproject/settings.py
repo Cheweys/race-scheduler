@@ -78,8 +78,6 @@ WSGI_APPLICATION = "rsproject.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-print(os.getenv('AZUREPOSTGRESPASS'))
-
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',

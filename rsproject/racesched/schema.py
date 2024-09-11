@@ -1,14 +1,9 @@
 from .models import RaceScheduleCyclingEvent, RaceScheduleRider, RaceScheduleBike, RaceScheduleWheelset, RaceScheduleRace
+from typing import List
 from ninja import Schema, ModelSchema
 
 class NotFoundSchema(Schema):
     message: str
-
-class CyclingEventSchemaFull(ModelSchema):
-    class Meta:
-        model = RaceScheduleCyclingEvent
-        fields = "__all__"
-        depth = 1
 
 class CyclingEventSchemaIn(ModelSchema):
     class Meta:
@@ -58,28 +53,19 @@ class RaceSchemaIn(ModelSchema):
 class RaceSchemaOut(ModelSchema):
     class Meta:
         model = RaceScheduleRace
-<<<<<<< HEAD
+        fields = "__all__"
+
+class CyclingEventSchemaFull(ModelSchema):
+    #races: List[RaceSchemaOut] = RaceScheduleCyclingEvent.objects.prefetch_related('races')
+    class Meta:
+        model = RaceScheduleCyclingEvent
         fields = "__all__"
 
 class RaceSchemaFullOut(ModelSchema):
+    cycling_event: CyclingEventSchemaOut
+    rider: RiderSchemaOut
+    bike: BikeSchemaOut
+    wheelset: WheelsetSchemaOut
     class Meta:
         model = RaceScheduleRace
-        fields = ['race_id', 'cycling_event', 'rider', 'race_date', 'race_start_time', 'distance']
-        #, distance_units,
-         #         terrain_type, route_url, cost, is_elite, bike, wheelset, results_url, total_time,
-         #         total_elevation_gain_feet, average_speed = models.FloatField(blank=True, null=True)
-    #average_power = models.IntegerField(blank=True, null=True)
-    #normalized_power = models.IntegerField(blank=True, null=True)
-    #category_desc = models.CharField(max_length=250, blank=True, null=True)
-    #category_result_position = models.IntegerField(blank=True, null=True)
-    #age_group_position = models.IntegerField(blank=True, null=True)
-    #overall_female_male_position = models.IntegerField(blank=True, null=True)
-    #overall_result_position = models.IntegerField(blank=True, null=True)
-    #overall_multiday_result_position = models.IntegerField(blank=True, null=True)
-    #payout = models.IntegerField(blank=True, null=True)
-    #prize = models.TextField(blank=True, null=True)
-    #notes]
-        depth = 1
-=======
         fields = "__all__"
->>>>>>> 40a57c8 (?)
