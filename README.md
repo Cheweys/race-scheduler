@@ -145,3 +145,7 @@ Password (again):
 Superuser created successfully.
 ```
 
+Starting the server ...
+```
+% python manage.py runserver
+```

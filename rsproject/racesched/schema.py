@@ -57,5 +57,19 @@ class RaceSchemaOut(ModelSchema):
 class RaceSchemaFullOut(ModelSchema):
     class Meta:
         model = RaceScheduleRace
-        fields = "__all__"
+        fields = ['race_id', 'cycling_event', 'rider', 'race_date', 'race_start_time', 'distance']
+        #, distance_units,
+         #         terrain_type, route_url, cost, is_elite, bike, wheelset, results_url, total_time,
+         #         total_elevation_gain_feet, average_speed = models.FloatField(blank=True, null=True)
+    #average_power = models.IntegerField(blank=True, null=True)
+    #normalized_power = models.IntegerField(blank=True, null=True)
+    #category_desc = models.CharField(max_length=250, blank=True, null=True)
+    #category_result_position = models.IntegerField(blank=True, null=True)
+    #age_group_position = models.IntegerField(blank=True, null=True)
+    #overall_female_male_position = models.IntegerField(blank=True, null=True)
+    #overall_result_position = models.IntegerField(blank=True, null=True)
+    #overall_multiday_result_position = models.IntegerField(blank=True, null=True)
+    #payout = models.IntegerField(blank=True, null=True)
+    #prize = models.TextField(blank=True, null=True)
+    #notes]
         depth = 1
