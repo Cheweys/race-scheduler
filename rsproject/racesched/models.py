@@ -17,6 +17,7 @@ class RaceScheduleCyclingEvent(models.Model):
         managed = False
         db_table = 'race_schedule_cycling_event'
         unique_together = (('year', 'event_name'),)
+        ordering = ['start_date']
 
     def __str__(self):
         return self.event_name + ', ' + self.city + ', ' + self.state + ' (' + self.start_date.isoformat() + ')'
@@ -97,6 +98,7 @@ class RaceScheduleRace(models.Model):
     class Meta:
         managed = False
         db_table = 'race_schedule_race'
+        ordering = ['race_date']
     
     def __str__(self):
         return self.rider.rider_name + "'s " + self.cycling_event.event_name + " Race (" + self.race_date.isoformat() + ")"

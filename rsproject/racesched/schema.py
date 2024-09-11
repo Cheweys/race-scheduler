@@ -4,6 +4,12 @@ from ninja import Schema, ModelSchema
 class NotFoundSchema(Schema):
     message: str
 
+class CyclingEventSchemaFull(ModelSchema):
+    class Meta:
+        model = RaceScheduleCyclingEvent
+        fields = "__all__"
+        depth = 1
+
 class CyclingEventSchemaIn(ModelSchema):
     class Meta:
         model = RaceScheduleCyclingEvent
@@ -52,6 +58,7 @@ class RaceSchemaIn(ModelSchema):
 class RaceSchemaOut(ModelSchema):
     class Meta:
         model = RaceScheduleRace
+<<<<<<< HEAD
         fields = "__all__"
 
 class RaceSchemaFullOut(ModelSchema):
@@ -73,3 +80,6 @@ class RaceSchemaFullOut(ModelSchema):
     #prize = models.TextField(blank=True, null=True)
     #notes]
         depth = 1
+=======
+        fields = "__all__"
+>>>>>>> 40a57c8 (?)

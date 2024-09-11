@@ -1,13 +1,13 @@
 from typing import List, Optional
 from ninja import NinjaAPI
 from .models import RaceScheduleCyclingEvent, RaceScheduleRider, RaceScheduleBike, RaceScheduleWheelset, RaceScheduleRace
-from .schema import CyclingEventSchemaOut, RiderSchemaOut, BikeSchemaOut, WheelsetSchemaOut, RaceSchemaOut, RaceSchemaFullOut, NotFoundSchema
+from .schema import CyclingEventSchemaOut, CyclingEventSchemaFull, RiderSchemaOut, BikeSchemaOut, WheelsetSchemaOut, RaceSchemaOut, NotFoundSchema
 
 api = NinjaAPI()
 
-@api.get("/races_full", response=List[RaceSchemaFullOut])
-def races_full(request):
-    return RaceScheduleRace.objects.all()
+@api.get("/events_full", response=List[CyclingEventSchemaFull])
+def events_full(request):
+    return RaceScheduleCyclingEvent.objects.all()
 
 @api.get("/events", response=List[CyclingEventSchemaOut])
 def cycling_events(request):
