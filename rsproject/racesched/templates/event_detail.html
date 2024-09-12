@@ -1,14 +1,22 @@
 {% extends 'base.html' %}
 
 {% block title %}
-{{ event.name }}
-{{ event.start_date }}
-{{ event.city }}, {{ event.state }}
+{{ event.event_name }}
+{% endblock %}
+
+{% block header_title %}
+{{ event.event_name }}
+{% endblock %}
+
+{% block header_subtitle %}
+<div>{{ event.start_date }}</div>
+<div>{{ event.city }}, {{ event.state }}</div>
 {% endblock %}
 
 {% block content %}
-{% if event.race_set.all %}
-    {% for race in event.race_set.all %}
+
+{% if races %}
+    {% for race in races %}
     <div class="container">{{race.distance}} {{race.distance_units}} on {{race.race_date}}</div>
         <ul class="list-group">
             <li class="list-group-item">

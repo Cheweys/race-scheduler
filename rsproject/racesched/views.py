@@ -8,6 +8,8 @@ def event_list(request):
     return render(request, 'event_list.html', context)
 
 def event_detail(request, pk):
-    event = get_object_or_404(models.RaceScheduleCyclingEvent, pk=pk)
-    context = {'event': event}
+    #races = models.RaceScheduleRace.objects.select_related('cycling_event').filter(cycling_event__pk=event_pk)
+    event = models.RaceScheduleCyclingEvent.objects.get(pk=pk)
+    races = models.RaceScheduleRace.objects.filter(cycling_event=event)
+    context = {'event': event, 'races': races}
     return render(request, 'event_detail.html', context)
