@@ -12,14 +12,15 @@
         <section class="jumbotron p-3">
             <h3>{% block header_title %}{% endblock %}</h3>
             <h5>{% block header_subtitle %}{% endblock %}</h5>
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                  <div class="navbar-header">
-                    <a class="navbar-brand " href="/">home</a>&nbsp;|&nbsp;<a class="navbar-brand" href="/admin">admin</a> 
-                  </div>
-                </div>
-            </nav>
         </section>
+        <ul class="nav justify-content-end">
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/admin">Admin</a>
+            </li>
+        </ul>
 
         {% block content %}
         {% endblock %}    
