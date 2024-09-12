@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-$=+pj^)!@@*=jl7zu2ur4!%d=_6yrthz(@k3yock-%7z)j)snt"
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -81,15 +81,12 @@ LOGIN_REDIRECT = '/'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'OPTIONS': {
-            'options': '-c search_path=race_scheudule,public'
-        },
-        'NAME': 'postgres',
-        'USER': 'ptschoen',
-        'PASSWORD': os.getenv('AZUREPOSTGRESPASS'),
-        'HOST': 'pats-postgresql.postgres.database.azure.com',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ['AZUREPOSTGRESNAME'],
+        'HOST': os.environ['AZUREPOSTGRESHOST'],
+        'USER': os.environ['AZUREPOSTGRESUSER'],
+        'PASSWORD': os.environ['AZUREPOSTGRESPASS'],
+        'PORT': os.environ['AZUREPOSTGRESPORT'],
     }
 }
 
