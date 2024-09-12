@@ -95,7 +95,7 @@ DATABASES = {
         },
         'NAME': 'postgres',
         'USER': 'ptschoen',
-        'PASSWORD': '$ftZ@jITznpM9uu',
+        'PASSWORD': os.getenv('AZUREPOSTGRESPASS'),
         'HOST': 'pats-postgresql.postgres.database.azure.com',
         'PORT': '5432',
     }

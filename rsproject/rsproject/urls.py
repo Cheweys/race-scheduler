@@ -22,5 +22,6 @@ from racesched.api import api
 urlpatterns = [
     path('', include('racesched.urls')),
     path("admin/", admin.site.urls),
-    path("api/", api.urls)
+    path("api/", api.urls),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]

@@ -34,13 +34,13 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'racesched',
+    "django.contrib.admin",
     'ninja',
 ]
 
@@ -74,6 +74,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "rsproject.wsgi.application"
 
+LOGIN_REDIRECT = '/'
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
