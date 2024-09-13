@@ -1,7 +1,8 @@
 # race-scheduler
 
-<mark>REMEMBER to set the environment variables in a `.env` file to execute locally.</mark> When deploying to Azure be sure to define the same variables as Application Settings. Locally, it should look something like the following.
+<mark>REMEMBER to set the environment variables in a `.env` file located in the project directory (`./rsproject/`)to execute locally.</mark> When deploying to Azure be sure to define the same variables as Application Settings. Locally, it should look something like the following.
 ```
+% cd rsproject
 % cat .env
 AZUREPOSTGRESNAME='postgres'
 AZUREPOSTGRESHOST='pats-postgresql.postgres.database.azure.com'
@@ -10,6 +11,11 @@ AZUREPOSTGRESPASS={{{PostgreSQL password>}}}
 AZUREPOSTGRESPORT='5432'
 SECRET_KEY={{{secret}}}
 ```
+
+I created the SECRET_KEY from Azure's "App registrations/" ...
+Name: race-scheduler
+Who cna use this application or access this API?: Personal Microsoft accounts only
+Redirect URI: https://race-scheduler.azurewebsites.net/
 
 Refering to docs at ...
 
