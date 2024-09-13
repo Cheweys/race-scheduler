@@ -42,6 +42,8 @@ INSTALLED_APPS = [
     'racesched',
     "django.contrib.admin",
     'ninja',
+    'crispy_forms',
+    'crispy_bootstrap4',
 ]
 
 MIDDLEWARE = [
