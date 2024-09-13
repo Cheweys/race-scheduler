@@ -13,6 +13,8 @@ import os
 from dotenv import load_dotenv
 from pathlib import Path
 
+# Locally, create a .env file to hold the variables needed by this application.
+# We'll use application settings instead of a .env file in Azure.
 load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.environ['SECRET_KEY']
+SECRET_KEY = os.getenv['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -84,11 +86,11 @@ LOGIN_REDIRECT = '/'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['AZUREPOSTGRESNAME'],
-        'HOST': os.environ['AZUREPOSTGRESHOST'],
-        'USER': os.environ['AZUREPOSTGRESUSER'],
-        'PASSWORD': os.environ['AZUREPOSTGRESPASS'],
-        'PORT': os.environ['AZUREPOSTGRESPORT'],
+        'NAME': os.getenv['AZUREPOSTGRESNAME'],
+        'HOST': os.getenv['AZUREPOSTGRESHOST'],
+        'USER': os.getenv['AZUREPOSTGRESUSER'],
+        'PASSWORD': os.getenv['AZUREPOSTGRESPASS'],
+        'PORT': os.getenv['AZUREPOSTGRESPORT'],
     }
 }
 

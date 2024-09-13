@@ -1,8 +1,14 @@
 # race-scheduler
 
-<mark>REMEMBER to create an environment variable to hold the password to Azure PostgreSQL database.</mark>
+<mark>REMEMBER to set the environment variables in a `.env` file to execute locally.</mark> When deploying to Azure be sure to define the same variables as Application Settings. Locally, it should look something like the following.
 ```
-export AZUREPOSTGRESPASS=<PostgreSQL password>
+% cat .env
+AZUREPOSTGRESNAME='postgres'
+AZUREPOSTGRESHOST='pats-postgresql.postgres.database.azure.com'
+AZUREPOSTGRESUSER='ptschoen'
+AZUREPOSTGRESPASS={{{PostgreSQL password>}}}
+AZUREPOSTGRESPORT='5432'
+SECRET_KEY={{{secret}}}
 ```
 
 Refering to docs at ...

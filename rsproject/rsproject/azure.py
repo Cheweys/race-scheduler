@@ -4,17 +4,6 @@ import os
 ALLOWED_HOSTS = [os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 CSRF_TRUSTED_ORIGINS = ['https://'+ os.environ['WEBSITE_HOSTNAME']] if 'WEBSITE_HOSTNAME' in os.environ else []
 
-hostname = os.environ['DBHOST']
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.environ['AZUREPOSTGRESNAME'],
-        'HOST': hostname + ".postgres.database.azure.com",
-        'USER': os.environ['AZUREPOSTGRESUSER'],
-        'PASSWORD': os.environ['AZUREPOSTGRESPASS'] 
-    }
-}
-
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     # Enables whitenoise for serving static files
@@ -29,6 +18,15 @@ MIDDLEWARE = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.getenv['AZUREPOSTGRESNAME'],
+        'HOST': os.getenv['AZUREPOSTGRESHOST'],
+        'USER': os.getenv['AZUREPOSTGRESUSER'],
+        'PASSWORD': os.getenv['AZUREPOSTGRESPASS'],
+        'PORT': os.getenv['AZUREPOSTGRESPORT'],
+    }
+}
 
 DEBUG = False
