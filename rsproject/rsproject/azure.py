@@ -18,15 +18,4 @@ MIDDLEWARE = [
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': os.getenv['AZUREPOSTGRESNAME'],
-        'HOST': os.getenv['AZUREPOSTGRESHOST'],
-        'USER': os.getenv['AZUREPOSTGRESUSER'],
-        'PASSWORD': os.getenv['AZUREPOSTGRESPASS'],
-        'PORT': os.getenv['AZUREPOSTGRESPORT'],
-    }
-}
-
 DEBUG = False
