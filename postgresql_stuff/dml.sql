@@ -49,6 +49,21 @@ FROM
 WHERE
     r.rider_name = 'Patrick Schoening';
 
+INSERT INTO 
+    race_schedule_bike
+    (
+        rider_id, make, model, notes
+    )
+SELECT 
+   r.rider_id,
+   'Cervelo',
+   'Aspero',
+   'Green beater bike lol.'
+FROM
+    race_schedule_rider r
+WHERE
+    r.rider_name = 'Patrick Schoening';
+
 INSERT INTO
     race_schedule_wheelset ( rider_id, make, model, size )
 SELECT
@@ -73,9 +88,23 @@ FROM
 WHERE
     r.rider_name = 'Patrick Schoening';
 
-INSERT INTO race_schedule_cycling_event (year, event_name, city, state, start_date, end_date, event_url, registration_url)
-    VALUES (2024, 'Oklahoma Gravel Growler', 'Tecumseh', 'OK', '2024-02-03', '2024-02-03',
-    'https://www.facebook.com/OKGravelGrowler/', 'https://www.bikesignup.com/Race/OK/Shawnee/OklahomaGravelGrowler');
+INSERT INTO
+    race_schedule_wheelset ( rider_id, make, model, size )
+SELECT
+    r.rider_id,
+    'Reserve',
+    '32 Carbon',
+    '700c'
+FROM
+    race_schedule_rider r
+WHERE
+    r.rider_name = 'Patrick Schoening';
+
+INSERT INTO race_schedule_cycling_event (year, event_name, address, city, state, start_date, end_date,
+    event_url, registration_url, photos_url)
+    VALUES (2024, 'Oklahoma Gravel Growler', '111 N Broadway Street', 'Tecumseh', 'OK', '2024-02-03', '2024-02-03',
+    'https://www.facebook.com/OKGravelGrowler/', 'https://www.bikesignup.com/Race/OK/Shawnee/OklahomaGravelGrowler',
+    'https://adobe.ly/3HMYrAM');
 
 INSERT INTO race_schedule_race (
     cycling_event_id,
@@ -158,8 +187,8 @@ JOIN race_schedule_bike b ON make = 'Alchemy' and model = 'Lycos'
 JOIN race_schedule_wheelset w ON w.make = 'ZIPP' and w.model = 'Firecrest 303'
 WHERE r.rider_name = 'Morgan Chaffin';
 
-INSERT INTO race_schedule_cycling_event (year, event_name, city, state, start_date, end_date, event_url, registration_url)
-    VALUES (2024, 'Louisville Classic Gravel Grinder', 'Louisville', 'NE', '2024-04-06', '2024-04-06',
+INSERT INTO race_schedule_cycling_event (year, event_name, address, city, state, start_date, end_date, event_url, registration_url)
+    VALUES (2024, 'Louisville Classic Gravel Grinder', '14704 156th St.', 'Louisville', 'NE', '2024-04-06', '2024-04-06',
     'https://www.facebook.com/profile.php?id=61553912115482&mibextid=LQQJ4d',
     'https://www.bikereg.com/63540');
 
@@ -204,6 +233,7 @@ INSERT INTO race_schedule_race (
 	distance,
 	distance_units,
     terrain_type,
+    route_url,
 	is_elite,
 	bike_id,
 	wheelset_id
@@ -215,11 +245,109 @@ SELECT
     62.5,
     'mi',
     'gravel',
+    'https://ridewithgps.com/routes/41912593',
     'N',
     b.bike_id,
     w.wheelset_id
 FROM race_schedule_rider r 
 JOIN race_schedule_cycling_event e ON event_name = 'Hazel Valley Rally'
-JOIN race_schedule_bike b ON make = 'Bearclaw' and model = 'Towmac'
-JOIN race_schedule_wheelset w ON w.make = 'HED' and w.model = 'Half BFD'
+JOIN race_schedule_bike b ON make = 'Cervelo' and model = 'Aspero'
+JOIN race_schedule_wheelset w ON w.make = 'Reserve' and w.model = '32 Carbon'
 WHERE r.rider_name = 'Patrick Schoening';
+
+INSERT INTO race_schedule_cycling_event (year, event_name, address, city, state, start_date, end_date, event_url)
+    VALUES (2024, 'Highlands Gravel Classic', '244 Clark Street', 'Goshen', 'AR', '2024-04-27', '2024-04-27',
+    'https://www.highlandsgravelclassic.com/');
+
+INSERT INTO race_schedule_race (
+    cycling_event_id,
+	rider_id,
+    race_date,
+	distance,
+	distance_units,
+    terrain_type,
+	is_elite,
+	bike_id,
+	wheelset_id,
+    results_url,
+	overall_female_male_position
+)
+SELECT
+    e.cycling_event_id,
+    r.rider_id,
+    '2024-04-27',
+    68,
+    'mi',
+    'gravel',
+    'Y',
+    b.bike_id,
+    w.wheelset_id,
+    'https://my.raceresult.com/286410/',
+    1
+FROM race_schedule_rider r 
+JOIN race_schedule_cycling_event e ON event_name = 'Highlands Gravel Classic'
+JOIN race_schedule_bike b ON make = 'Alchemy' and model = 'Lycos'
+JOIN race_schedule_wheelset w ON w.make = 'ZIPP' and w.model = 'Firecrest 303'
+WHERE r.rider_name = 'Morgan Chaffin';
+
+INSERT INTO race_schedule_cycling_event (year, event_name, city, state, start_date, end_date, event_url, registration_url)
+    VALUES (2024, 'La Grind', 'Emporia', 'KS', '2024-05-06', '2024-05-07',
+    'https://www.ridelagrind.com/', 'https://register.chronotrack.com/r/77092');
+
+INSERT INTO race_schedule_race (
+    cycling_event_id,
+	rider_id,
+    race_date,
+	distance,
+	distance_units,
+    terrain_type,
+	is_elite,
+	bike_id,
+	wheelset_id,
+	overall_female_male_position
+)
+SELECT
+    e.cycling_event_id,
+    r.rider_id,
+    '2024-05-06',
+    50,
+    'mi',
+    'gravel',
+    'Y',
+    b.bike_id,
+    w.wheelset_id,
+    1
+FROM race_schedule_rider r 
+JOIN race_schedule_cycling_event e ON event_name = 'La Grind'
+JOIN race_schedule_bike b ON make = 'Alchemy' and model = 'Lycos'
+JOIN race_schedule_wheelset w ON w.make = 'ZIPP' and w.model = 'Firecrest 303'
+WHERE r.rider_name = 'Morgan Chaffin';
+
+INSERT INTO race_schedule_race (
+    cycling_event_id,
+	rider_id,
+    race_date,
+	distance,
+	distance_units,
+    terrain_type,
+	is_elite,
+	bike_id,
+	wheelset_id,
+	overall_female_male_position
+)
+SELECT
+    e.cycling_event_id,
+    r.rider_id,
+    '2024-05-07',
+    65,
+    'mi',
+    'gravel',
+    'Y',
+    b.bike_id,
+    w.wheelset_id,
+    1
+FROM race_schedule_rider r 
+JOIN race_schedule_cycling_event e ON event_name = 'La Grind'
+JOIN race_schedule_bike b ON make = 'Alchemy' and model = 'Lycos'
+JOIN race_schedule_wheelset w ON w.make = 'ZIPP' and w.model = 'Firecrest 303'
+WHERE r.rider_name = 'Morgan Chaffin';

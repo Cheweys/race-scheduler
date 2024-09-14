@@ -15,17 +15,129 @@
 
 {% block content %}
 
+<h4>Event Info</h4>
+<table class="table table-sm">
+    <tbody>
+        <tr>
+            <th>Address</th>
+            <td>{% if event.address %}{{ event.address }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Event URL</th>
+            <td>{% if event.event_url %}<a href='{{ event.event_url }}' target="_blank">{{ event.event_url }}</a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Registration URL</th>
+            <td>{% if event.registration_url %}<a href='{{ event.registration_url }}' target="_blank">{{ event.registration_url }}</a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Photos URL</th>
+            <td>{% if event.photos_url %}<a href='{{ event.photos_url }}' target="_blank">{{ event.photos_url }}</a>{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Notes</th>
+            <td>{% if event.notes %}{{ event.notes }}{% endif %}</td>
+        </tr>
+    </tbody>
+</table>
+
 {% if races %}
     {% for race in races %}
-    <div class="container">{{race.distance}} {{race.distance_units}} on {{race.race_date}}</div>
-        <ul class="list-group">
-            <li class="list-group-item">
-                Rider: {{race.rider.rider_name}}
-            </li>
-        </ul>
-    </div>
+    <h4>Race: {{race.distance}} {{race.distance_units}} on {{race.race_date}}</h4>
+    <table class="table table-sm">
+        <tbody>
+            <tr>
+                <th>Rider</th>
+                <td>{% if race.rider %}{{race.rider.rider_name}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Start Time</th>
+                <td>{% if race.race_start_time %}{{race.race_start_time}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Terrain Type</th>
+                <td>{% if race.terrain_type %}{{race.terrain_type}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Route URL</th>
+                <td>{% if race.route_url %}<a href='{{race.route_url}}' target="_blank">{{race.route_url}}</a>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Elite</th>
+                <td>{% if race.is_elite %}{{race.is_elite}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Bike</th>
+                <td>{% if race.bike %}{{race.bike.make}} {{race.bike.model}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Wheelset</th>
+                <td>{% if race.wheelset %}{{race.wheelset.make}} {{race.wheelset.model}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Results URL</th>
+                <td>{% if race.results_url %}<a href='{{race.results_url}}' target="_blank">{{race.results_url}}</a>{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Total Time</th>
+                <td>{% if race.total_time %}{{race.total_time}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Total Elevation Gain (ft)</th>
+                <td>{% if race.total_elevation_gain_feet %}{{race.total_elevation_gain_feet}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>average_speed (mph)</th>
+                <td>{% if race.average_speed %}{{race.average_speed}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Average Power (Watts)</th>
+                <td>{% if race.average_power %}{{race.average_power}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Normalized Power (Watts)</th>
+                <td>{% if race.normalized_power %}{{race.normalized_power}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Age Group Position</th>
+                <td>{% if race.age_group_position %}{{race.age_group_position}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Overall Female/Male Position</th>
+                <td>{% if race.overall_female_male_position %}{{race.overall_female_male_position}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Overall Result Position</th>
+                <td>{% if race.overall_result_position %}{{race.overall_result_position}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Overall Multiday Result Position</th>
+                <td>{% if race.overall_multiday_result_position %}{{race.overall_multiday_result_position}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Other Category Description</th>
+                <td>{% if race.category_desc %}{{race.category_desc}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Other Category Result Position</th>
+                <td>{% if race.category_result_position %}{{race.category_result_position}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Payout</th>
+                <td>{% if race.payout %}{{race.payout}}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Prize</th>
+                <td>{% if race.prize %}{{race.prize}}{% endif %}</td>
+            </tr>
+            <tr></tr>
+                <th>Notes</th>
+                <td>{% if race.notes %}{{race.notes}}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
     {% endfor %}
 {% else %}
-    <div>This event has not been registered for.</div>
+    <div>This event has not been registered for ... AKA the registration, if it's complete, hasn't been entered into this database &#128540;</div>
 {% endif %}
 {% endblock %}

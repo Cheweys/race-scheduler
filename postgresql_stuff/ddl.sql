@@ -16,6 +16,7 @@ CREATE TABLE race_schedule_cycling_event (
 	end_date date,
 	event_url VARCHAR(250),
 	registration_url VARCHAR(250),
+	photos_url VARCHAR(250),
 	notes text,
 	UNIQUE (year, event_name)
 );
