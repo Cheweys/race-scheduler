@@ -142,17 +142,19 @@ def bike(request, bike_id: int):
 @api.post("/bikes", response={201:BikeSchemaOut})
 def create_bike(request, bike: BikeSchemaIn):
     b = bike.dict()
-    b['rider'] = RaceScheduleRider.objects.get(pk=bike.rider)
+    #b['rider'] = RaceScheduleRider.objects.get(pk=bike.rider)
     bike = RaceScheduleBike.objects.create(**b)
     return bike
 
 @api.put("/bikes/{bike_id}", response={200: BikeSchemaOut, 404: NotFoundSchema})
 def update_bike(request, bike_id: int, data: BikeSchemaOut):
     try:
+        print("----", "Update bike ...")
         bike = RaceScheduleBike.objects.get(pk=bike_id)
+        #print(bike)
         for attribute, value in data.dict().items():
             setattr(bike, attribute, value)
-        setattr(bike, 'rider', RaceScheduleRider.objects.get(pk=data.rider))
+        #setattr(bike, 'rider', RaceScheduleRider.objects.get(pk=data.rider.rider_id))
         bike.save()
         return 200, bike
     except RaceScheduleBike.DoesNotExist as e:
