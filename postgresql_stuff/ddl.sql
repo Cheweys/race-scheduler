@@ -3,6 +3,8 @@ DROP TABLE IF EXISTS race_schedule_race;
 DROP TABLE IF EXISTS race_schedule_cycling_event;
 DROP TABLE IF EXISTS race_schedule_bike;
 DROP TABLE IF EXISTS race_schedule_wheelset;
+DROP TABLE IF EXISTS race_schedule_sponsors;
+DROP TABLE IF EXISTS race_schedule_social_media_tags;
 DROP TABLE IF EXISTS race_schedule_rider;
 
 CREATE TABLE race_schedule_cycling_event (
@@ -24,6 +26,10 @@ CREATE TABLE race_schedule_cycling_event (
 CREATE TABLE race_schedule_rider (
 	rider_id serial PRIMARY KEY,
 	rider_name VARCHAR(250) UNIQUE NOT NULL,
+	facebook_handle VARCHAR(150),
+	instagram_handle VARCHAR(150),
+	twitter_handle VARCHAR(150),
+	strava_handle VARCHAR(150),
 	notes text
 );
 
@@ -64,10 +70,10 @@ CREATE TABLE race_schedule_race (
 	wheelset_id integer REFERENCES race_schedule_wheelset,
 	results_url VARCHAR(250),
 	total_time time,
-	total_elevation_gain_feet int,
+	total_elevation_gain_feet integer,
 	average_speed float(1),
-	average_power int,
-	normalized_power int,
+	average_power integer,
+	normalized_power integer,
 	category_desc VARCHAR(250),
 	category_result_position integer,
 	age_group_position integer,
@@ -75,6 +81,8 @@ CREATE TABLE race_schedule_race (
 	overall_result_position integer,
 	overall_multiday_result_position integer,
 	payout integer,
+	primary_race_photo_url VARCHAR(500),
+	social_media_post text,
 	prize text,
 	notes text
 );
