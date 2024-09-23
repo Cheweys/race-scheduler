@@ -100,6 +100,63 @@ FROM
 WHERE
     r.rider_name = 'Patrick Schoening';
 
+INSERT INTO
+    race_schedule_sponsor ( rider_id, sponsor_name, url, facebook_handle, instagram_handle, twitter_handle )
+SELECT
+    r.rider_id,
+    'Varlo',
+    'https://varlosports.com/',
+    'Varlo.apparel',
+    'varlo_apparel',
+    'varlo_apparel'
+FROM
+    race_schedule_rider r
+WHERE
+    r.rider_name = 'Morgan Chaffin';
+
+INSERT INTO
+    race_schedule_sponsor ( rider_id, sponsor_name, url, facebook_handle, instagram_handle )
+SELECT
+    r.rider_id,
+    'Alchemy',
+    'https://alchemybikes.com/',
+    'alchemybikes',
+    'alchemybikes'
+FROM
+    race_schedule_rider r
+WHERE
+    r.rider_name = 'Morgan Chaffin';
+
+INSERT INTO
+    race_schedule_social_media_tag ( rider_id, tag )
+SELECT
+    r.rider_id,
+    'gravelrace'
+FROM
+    race_schedule_rider r
+WHERE
+    r.rider_name = 'Morgan Chaffin';
+
+INSERT INTO
+    race_schedule_social_media_tag ( rider_id, tag )
+SELECT
+    r.rider_id,
+    'vitargoathlete'
+FROM
+    race_schedule_rider r
+WHERE
+    r.rider_name = 'Morgan Chaffin';
+
+INSERT INTO
+    race_schedule_social_media_tag ( rider_id, tag )
+SELECT
+    r.rider_id,
+    'teamvarlo'
+FROM
+    race_schedule_rider r
+WHERE
+    r.rider_name = 'Morgan Chaffin';
+
 INSERT INTO race_schedule_cycling_event (year, event_name, address, city, state, start_date, end_date,
     event_url, registration_url, photos_url)
     VALUES (2024, 'Oklahoma Gravel Growler', '111 N Broadway Street', 'Tecumseh', 'OK', '2024-02-03', '2024-02-03',
@@ -122,6 +179,7 @@ INSERT INTO race_schedule_race (
     total_time,
 	overall_female_male_position,
 	overall_result_position,
+    social_media_post,
 	notes
 )
 SELECT
@@ -140,6 +198,23 @@ SELECT
     '5:49:14.87',
     2,
     4,
+    'The @oklahoma_gravel_growler AKA Midsouth wannabe pushed my limits in its epic mess. Rain 🌧️ made an otherwise incredible route quite technically challenging. The orange, sandy mud ate through my brakes and my bike sounded like a rusted huffy! 😂 Completing events like this are really allowing me to grow as a gravel cyclist. I’m stoked to finish second female🥈and fourth overall.
+
+Thanks @namritabrooke for your mad coaching skills and instilling the confidence in me to excel at these events. 😀
+
+My new @varlo_apparel gravel kit held up super well in the crazy conditions and I was so thankful to have the vest for added warmth and wind protection. 😊
+
+About 15 miles in I experienced a flat and was quickly saved by @silca_velo ultimate tubeless sealant. 💪🏼💣
+
+Thanks @vitargo and @never.second for fueling me through this mudfest! 😋
+
+Excited to return home and get my new @alchemybikes Lycos set up for the next event! 🙌🏼
+
+A great take away from this event would be to have a narrower set of tires to allow for more mud clearance. Another reason why I’m stoked to get on the Alchemy Lycos with its ability to support up to 50mm tires! 🖤🚲
+
+📷 and all the weekend care @schoening.patrick ❤️😘
+
+#oklahomagravelgrowler #mudandgrit #raceday #gravelrace #gravelbike #slipandslide #graveladventures #spoklahoma #bisaddle #vitargoathlete #varloapparel #gravelgear #chamoisbuttrambassador #alchemybikes',
     'Rainy, muddy day. Second to Emily Newsome (pro). Alison Tetrick (pro) was third.'
 FROM race_schedule_rider r 
 JOIN race_schedule_cycling_event e ON event_name = 'Oklahoma Gravel Growler'

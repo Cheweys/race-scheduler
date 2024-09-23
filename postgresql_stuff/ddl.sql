@@ -3,8 +3,8 @@ DROP TABLE IF EXISTS race_schedule_race;
 DROP TABLE IF EXISTS race_schedule_cycling_event;
 DROP TABLE IF EXISTS race_schedule_bike;
 DROP TABLE IF EXISTS race_schedule_wheelset;
-DROP TABLE IF EXISTS race_schedule_sponsors;
-DROP TABLE IF EXISTS race_schedule_social_media_tags;
+DROP TABLE IF EXISTS race_schedule_sponsor;
+DROP TABLE IF EXISTS race_schedule_social_media_tag;
 DROP TABLE IF EXISTS race_schedule_rider;
 
 CREATE TABLE race_schedule_cycling_event (
@@ -26,10 +26,10 @@ CREATE TABLE race_schedule_cycling_event (
 CREATE TABLE race_schedule_rider (
 	rider_id serial PRIMARY KEY,
 	rider_name VARCHAR(250) UNIQUE NOT NULL,
-	facebook_handle VARCHAR(150),
-	instagram_handle VARCHAR(150),
-	twitter_handle VARCHAR(150),
-	strava_handle VARCHAR(150),
+	facebook_handle VARCHAR(200),
+	instagram_handle VARCHAR(200),
+	twitter_handle VARCHAR(200),
+	strava_handle VARCHAR(200),
 	notes text
 );
 
@@ -52,6 +52,25 @@ CREATE TABLE race_schedule_wheelset (
 	retired VARCHAR(1) NOT NULL DEFAULT 'N' check (retired in ('Y', 'N')),
 	notes text,
 	UNIQUE (rider_id, make, model)
+);
+
+CREATE TABLE race_schedule_sponsor (
+	sponsor_id serial PRIMARY KEY,
+	rider_id integer REFERENCES race_schedule_rider NOT NULL,
+	sponsor_name VARCHAR(250) NOT NULL,
+	url VARCHAR(250) NOT NULL,
+	facebook_handle VARCHAR(200),
+	instagram_handle VARCHAR(200),
+	twitter_handle VARCHAR(200),
+	notes text,
+	UNIQUE (rider_id, sponsor_name)
+);
+
+CREATE TABLE race_schedule_social_media_tag (
+	tag_id serial PRIMARY KEY,
+	rider_id integer REFERENCES race_schedule_rider NOT NULL,
+	tag VARCHAR(250) NOT NULL,
+	UNIQUE (rider_id, tag)
 );
 
 CREATE TABLE race_schedule_race (

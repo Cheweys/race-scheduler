@@ -67,7 +67,12 @@ def race(request, race_id: int):
 
 @api.post("/races", response={201:RaceSchemaOut})
 def create_race(request, race: RaceSchemaIn):
+    print(race)
     # TODO: Test this. I think I need to look up the related event, rider, bike, and wheelset first
+    event = RaceScheduleCyclingEvent.objects.get(pk=race.cycling_event)
+    r = RaceScheduleRider.objects.get(pk=race.rider)
+    #print(event)
+    race.update(cycling_event=event, rider=r)
     race = RaceScheduleRace.objects.create(**race.dict())
     return race
 
@@ -75,6 +80,8 @@ def create_race(request, race: RaceSchemaIn):
 def update_race(request, race_id: int, data: RaceSchemaOut):
     try:
         # TODO: Test this. Do I need to look up the related event, rider, bike, and wheelset first
+        event = RaceScheduleCyclingEvent.objects.get(pk=data.cycling_event)
+        print(event)
         race = RaceScheduleRace.objects.get(pk=race_id)
         for attribute, value in data.dict().items():
             setattr(race, attribute, value)

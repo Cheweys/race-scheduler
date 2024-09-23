@@ -11,6 +11,7 @@ class RaceScheduleCyclingEvent(models.Model):
     end_date = models.DateField(blank=True, null=True)
     event_url = models.CharField(max_length=250, blank=True, null=True)
     registration_url = models.CharField(max_length=250, blank=True, null=True)
+    photos_url = models.CharField(max_length=250, blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
 
     class Meta:
@@ -93,6 +94,7 @@ class RaceScheduleRace(models.Model):
     overall_multiday_result_position = models.IntegerField(blank=True, null=True)
     payout = models.IntegerField(blank=True, null=True)
     prize = models.TextField(blank=True, null=True)
+    social_media_post = models.TextField(blank=True, null=True)
     notes = models.TextField(blank=True, null=True)
 
     class Meta:
