@@ -49,6 +49,7 @@ class RaceSchemaIn(ModelSchema):
     class Meta:
         model = RaceScheduleRace
         exclude = ['race_id']
+        include = ['rider_id', 'bike_id', 'wheelset_id']
 
 class RaceSchemaOut(ModelSchema):
     class Meta:
